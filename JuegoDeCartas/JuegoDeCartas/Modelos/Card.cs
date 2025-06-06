@@ -4,15 +4,25 @@ namespace JuegoDeCartas.Modelos
 {
   public class Card
   {
-    public Suit Suit { get; }
-    public Rank Rank { get; }
+    public Symbol Symbol { get; }
+    public Value Value { get; }
 
-    public Card(Suit suit, Rank rank)
+    public Card(Symbol symbol, Value value)
     {
-      Suit = suit;
-      Rank = rank;
+      Symbol = symbol;
+      Value = value;
     }
 
-    public override string ToString() => $"{Rank} of {Suit}";
+    public override bool Equals(object? obj)
+    {
+      return obj is Card other && Symbol == other.Symbol && Value == other.Value;
+    }
+
+    public override int GetHashCode()
+    {
+      return HashCode.Combine(Symbol, Value);
+    }
+
+    public override string ToString() => $"{Value} de {Symbol}";
   }
 }

@@ -2,18 +2,29 @@
 {
   public class Player
   {
-    public string? Name { get; }
+    public int Number { get; }
     public List<Card> Hand { get; }
 
-    public Player(string name)
+    public Player(int number)
     {
-      Name= name;
+      Number = number;
       Hand = new List<Card>();
     }
 
-    public void ReceiveCard(Card card)
+    public void AddCards(List<Card> cards)
     {
-      Hand.Add(card);
+      Hand.AddRange(cards);
+    }
+
+    public void ShowHand()
+    {
+      Console.WriteLine();
+      Console.WriteLine($"Mano del jugador {Number}");
+      foreach(var cart in Hand)
+      {
+        Console.WriteLine($"  - {cart}");
+      }
+      Console.WriteLine();
     }
   }
 }

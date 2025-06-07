@@ -1,5 +1,4 @@
 ﻿using JuegoDeCartas.Interfaces;
-using JuegoDeCartas.Modelos;
 using JuegoDeCartas.Servicios;
 
 class Program

@@ -32,7 +32,7 @@ namespace JuegoDeCartas.Servicios
 
       if(neededCards > _cardDeck.GetAllCards().Count)
       {
-        Console.WriteLine($"❌ No hay cartas suficientes para todos. Solo hay {_cardDeck.GetAllCards().Count} disponibles");
+        Console.WriteLine($"No hay cartas suficientes para todos. Solo hay {_cardDeck.GetAllCards().Count} disponibles");
         return;
       } 
 

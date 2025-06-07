@@ -1,5 +1,4 @@
 ﻿using EstudiantesEnMemoria.Interfaces;
-using EstudiantesEnMemoria.Modelos;
 
 namespace EstudiantesEnMemoria.Utils
 {
@@ -7,7 +6,7 @@ namespace EstudiantesEnMemoria.Utils
   {
     public static void Add(IStudentService studentService)
     {
-      var student = ReadStudent();
+      var student = StudentInputValidation.ReadStudentFromConsole();
       if (studentService.Add(student))
         Console.WriteLine("Estudiante agregado de forma correcta");
       else
@@ -18,6 +17,7 @@ namespace EstudiantesEnMemoria.Utils
     {
       Console.Write("Ingresa la matrícula del estudiante que quieres modificar: ");
       string tuition = Console.ReadLine()!;
+
       var exists = studentService.GetByTuition(tuition);
       if (exists == null)
       {
@@ -25,7 +25,7 @@ namespace EstudiantesEnMemoria.Utils
         return;
       }
 
-      var student = ReadStudent();
+      var student = StudentInputValidation.ReadStudentFromConsole();
       if (studentService.Update(tuition, student))
         Console.WriteLine("Estudiante actualizado");
       else
@@ -68,30 +68,6 @@ namespace EstudiantesEnMemoria.Utils
       {
         Console.WriteLine(student);
       }
-    }
-
-    private static Student ReadStudent()
-    {
-      string tuition = InputValidator.ReadNonEmptyString("Matrícula");
-      string name = InputValidator.ReadNonEmptyString("Nombre");
-      string surname = InputValidator.ReadNonEmptyString("Apellido");
-      string telephone = InputValidator.ReadNonEmptyString("Teléfono");
-      string mail = InputValidator.ReadNonEmptyString("Correo");
-      string career = InputValidator.ReadNonEmptyString("Carrera");
-      string grade = InputValidator.ReadNonEmptyString("Grado");
-
-      return new Student
-      {
-        Tuition = tuition,
-        Name = name,
-        Surname = surname,
-        Telephone = telephone,
-        Mail = mail,
-        Career = career,
-        Grade = grade
-      };
-    }
-
-    
+    }    
   }
 }
